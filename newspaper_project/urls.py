@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',include('users.urls')), # for the signup(manually done)
     path('users/',include('django.contrib.auth.urls')), #for the login (builin view)
+    path('articles/',include('articles.urls')),
     path('',TemplateView.as_view(template_name = 'home.html'),name="home"),
 ]

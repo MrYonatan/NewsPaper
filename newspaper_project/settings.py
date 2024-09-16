@@ -37,7 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    
+    
+    #3rd party
+    'crispy_forms',
+    "crispy_bootstrap5",
+    
+    
+    #local
     'users.apps.UsersConfig',
+    'pages.apps.PagesConfig',
+    'articles.apps.ArticlesConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -127,3 +139,16 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@sandboxa5bb72d8bc9741fc944adf22899553f9.mailgun.org'
+EMAIL_HOST_PASSWORD = 'f6845077b88409eaad2d06e1ee657c52-826eddfb-f447c6d9'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+TIME_ZONE = 'America/New_York'
