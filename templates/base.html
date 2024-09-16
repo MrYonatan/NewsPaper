@@ -51,15 +51,16 @@
             >
               {{ user.username }}
             </a>
-            <div
-              class="dropdown-menu dropdown-menu-right"
-              aria-labelledby="userMenu"
-            >
-              <a class="dropdown-item" href="{% url 'password_change'%}"
-                >Change password</a
-              >
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+              <a class="dropdown-item" href="{% url 'password_change'%}">Change password</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'logout' %}"> Log Out</a>
+               {% comment %} keep in mind that you can not directly make the logout link anchor since anchor tags are send through GET. to fix, 
+               create a form specify the action to the logout url and use a submit button to replace the anchor tag. that is what 
+               the form tag under this line is about {% endcomment %}
+              <form action="{% url 'logout' %}" method="post"> 
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">Log Out</button>
+              </form>
             </div>
           </li>
         </ul>
