@@ -60,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'newspaper_project.urls'
@@ -130,6 +132,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STARICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -146,9 +154,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_HOST_USER = 'postmaster@sandboxa5bb72d8bc9741fc944adf22899553f9.mailgun.org'
-EMAIL_HOST_PASSWORD = 'f6845077b88409eaad2d06e1ee657c52-826eddfb-f447c6d9'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
+
 EMAIL_USE_TLS = True
 TIME_ZONE = 'America/New_York'
+
+STARICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
